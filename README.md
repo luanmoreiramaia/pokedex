@@ -1,8 +1,4 @@
-# pokedex
-
-Pokedex
-
-## Getting Started
+# Pokedex
 
 This project is a starting point for a Flutter application.
 
