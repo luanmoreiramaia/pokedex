@@ -9,39 +9,51 @@ part of 'home_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeController on _HomeControllerBase, Store {
-  final _$valueAtom = Atom(name: '_HomeControllerBase.value');
+  final _$pokemonsAtom = Atom(name: '_HomeControllerBase.pokemons');
 
   @override
-  int get value {
-    _$valueAtom.context.enforceReadPolicy(_$valueAtom);
-    _$valueAtom.reportObserved();
-    return super.value;
+  List<Pokemon> get pokemons {
+    _$pokemonsAtom.context.enforceReadPolicy(_$pokemonsAtom);
+    _$pokemonsAtom.reportObserved();
+    return super.pokemons;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.context.conditionallyRunInAction(() {
-      super.value = value;
-      _$valueAtom.reportChanged();
-    }, _$valueAtom, name: '${_$valueAtom.name}_set');
+  set pokemons(List<Pokemon> value) {
+    _$pokemonsAtom.context.conditionallyRunInAction(() {
+      super.pokemons = value;
+      _$pokemonsAtom.reportChanged();
+    }, _$pokemonsAtom, name: '${_$pokemonsAtom.name}_set');
   }
 
-  final _$_HomeControllerBaseActionController =
-      ActionController(name: '_HomeControllerBase');
+  final _$statusAtom = Atom(name: '_HomeControllerBase.status');
 
   @override
-  void increment() {
-    final _$actionInfo = _$_HomeControllerBaseActionController.startAction();
-    try {
-      return super.increment();
-    } finally {
-      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
-    }
+  HomeStatus get status {
+    _$statusAtom.context.enforceReadPolicy(_$statusAtom);
+    _$statusAtom.reportObserved();
+    return super.status;
+  }
+
+  @override
+  set status(HomeStatus value) {
+    _$statusAtom.context.conditionallyRunInAction(() {
+      super.status = value;
+      _$statusAtom.reportChanged();
+    }, _$statusAtom, name: '${_$statusAtom.name}_set');
+  }
+
+  final _$fetchPokemonsAsyncAction = AsyncAction('fetchPokemons');
+
+  @override
+  Future<dynamic> fetchPokemons() {
+    return _$fetchPokemonsAsyncAction.run(() => super.fetchPokemons());
   }
 
   @override
   String toString() {
-    final string = 'value: ${value.toString()}';
+    final string =
+        'pokemons: ${pokemons.toString()},status: ${status.toString()}';
     return '{$string}';
   }
 }
