@@ -30,5 +30,5 @@ flutter:
     - family: Google
       fonts:
         - asset: assets/fonts/Product_Sans_Regular.ttf
-        - asset: assets/fonts/Schyler-Product_Sans_Bold.ttf
+        - asset: assets/fonts/Product_Sans_Bold.ttf
           weight: 700

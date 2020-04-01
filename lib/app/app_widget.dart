@@ -9,9 +9,10 @@ class AppWidget extends StatelessWidget {
       navigatorKey: Modular.navigatorKey,
       title: 'Pokedex',
       theme: ThemeData(
-        primarySwatch: Colors.red.shade500,
+        primarySwatch: Colors.red,
       ),
       initialRoute: '/',
+      debugShowCheckedModeBanner: false,
       onGenerateRoute: Modular.generateRoute,
     );
   }
