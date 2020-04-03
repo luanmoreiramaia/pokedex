@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pokedex/app/models/pokemon.dart';
 import 'package:pokedex/app/modules/home/repositories/home_repository.dart';
