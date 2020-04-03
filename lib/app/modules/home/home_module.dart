@@ -4,11 +4,13 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokedex/app/modules/home/home_page.dart';
 import 'package:pokedex/app/modules/home/repositories/home_repository.dart';
 
+import 'repositories/home_repository_interface.dart';
+
 class HomeModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => HomeRepository(i.get<Dio>())),
-        Bind((i) => HomeController(i.get<HomeRepository>())),
+        Bind<IHomeRepository>((i) => HomeRepository(i.get<Dio>())),
+        Bind((i) => HomeController(i.get<IHomeRepository>())),
       ];
 
   @override

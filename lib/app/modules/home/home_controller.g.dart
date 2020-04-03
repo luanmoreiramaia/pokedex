@@ -29,14 +29,14 @@ mixin _$HomeController on _HomeControllerBase, Store {
   final _$statusAtom = Atom(name: '_HomeControllerBase.status');
 
   @override
-  HomeStatus get status {
+  dynamic get status {
     _$statusAtom.context.enforceReadPolicy(_$statusAtom);
     _$statusAtom.reportObserved();
     return super.status;
   }
 
   @override
-  set status(HomeStatus value) {
+  set status(dynamic value) {
     _$statusAtom.context.conditionallyRunInAction(() {
       super.status = value;
       _$statusAtom.reportChanged();
