@@ -9,51 +9,39 @@ part of 'home_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeController on _HomeControllerBase, Store {
-  final _$pokemonsAtom = Atom(name: '_HomeControllerBase.pokemons');
+  final _$listPokemonsAtom = Atom(name: '_HomeControllerBase.listPokemons');
 
   @override
-  List<Pokemon> get pokemons {
-    _$pokemonsAtom.context.enforceReadPolicy(_$pokemonsAtom);
-    _$pokemonsAtom.reportObserved();
-    return super.pokemons;
+  ObservableFuture<List<Pokemon>> get listPokemons {
+    _$listPokemonsAtom.context.enforceReadPolicy(_$listPokemonsAtom);
+    _$listPokemonsAtom.reportObserved();
+    return super.listPokemons;
   }
 
   @override
-  set pokemons(List<Pokemon> value) {
-    _$pokemonsAtom.context.conditionallyRunInAction(() {
-      super.pokemons = value;
-      _$pokemonsAtom.reportChanged();
-    }, _$pokemonsAtom, name: '${_$pokemonsAtom.name}_set');
+  set listPokemons(ObservableFuture<List<Pokemon>> value) {
+    _$listPokemonsAtom.context.conditionallyRunInAction(() {
+      super.listPokemons = value;
+      _$listPokemonsAtom.reportChanged();
+    }, _$listPokemonsAtom, name: '${_$listPokemonsAtom.name}_set');
   }
 
-  final _$statusAtom = Atom(name: '_HomeControllerBase.status');
+  final _$_HomeControllerBaseActionController =
+      ActionController(name: '_HomeControllerBase');
 
   @override
-  dynamic get status {
-    _$statusAtom.context.enforceReadPolicy(_$statusAtom);
-    _$statusAtom.reportObserved();
-    return super.status;
-  }
-
-  @override
-  set status(dynamic value) {
-    _$statusAtom.context.conditionallyRunInAction(() {
-      super.status = value;
-      _$statusAtom.reportChanged();
-    }, _$statusAtom, name: '${_$statusAtom.name}_set');
-  }
-
-  final _$fetchPokemonsAsyncAction = AsyncAction('fetchPokemons');
-
-  @override
-  Future<dynamic> fetchPokemons() {
-    return _$fetchPokemonsAsyncAction.run(() => super.fetchPokemons());
+  dynamic getAllPokemons() {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction();
+    try {
+      return super.getAllPokemons();
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
   }
 
   @override
   String toString() {
-    final string =
-        'pokemons: ${pokemons.toString()},status: ${status.toString()}';
+    final string = 'listPokemons: ${listPokemons.toString()}';
     return '{$string}';
   }
 }

@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pokedex/app/models/pokemon.dart';
 import 'package:pokedex/app/modules/home/repositories/home_repository.dart';
-import 'package:pokedex/app/modules/home/repositories/home_status.dart';
 
 part 'home_controller.g.dart';
 
@@ -14,22 +12,10 @@ abstract class _HomeControllerBase with Store {
   _HomeControllerBase(this.repository);
 
   @observable
-  List<Pokemon> pokemons;
-  @observable
-  HomeStatus status = HomeStatus.none;
+  ObservableFuture<List<Pokemon>> listPokemons;
 
   @action
-  Future fetchPokemons() async {
-    status = HomeStatus.loading;
-
-    try {
-      final response = await repository.fetchPokemons();
-      pokemons = response;
-      status = HomeStatus.success..value = response;
-    } catch (e) {
-      pokemons = null;
-      print("Erro ao carregar a lista de pokemons: " + e.toString());
-      status = HomeStatus.error..value = e;
-    }
+  getAllPokemons() {
+    listPokemons = repository.getAllPokemons().asObservable();
   }
 }
