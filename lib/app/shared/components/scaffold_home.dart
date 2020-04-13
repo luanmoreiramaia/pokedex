@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class CustomScaffold extends StatelessWidget {
   final Color backgroundColor;
-  final Widget leadingAppBar;
   final List<Widget> actionsAppBar;
   final String titleAppBar;
   final Color colorTitleAppBar;
@@ -10,7 +9,6 @@ class CustomScaffold extends StatelessWidget {
 
   const CustomScaffold({
     Key key,
-    this.leadingAppBar,
     this.actionsAppBar,
     this.backgroundColor = Colors.transparent,
     this.titleAppBar = "",
@@ -27,10 +25,6 @@ class CustomScaffold extends StatelessWidget {
       child: Scaffold(
         backgroundColor: backgroundColor,
         appBar: AppBar(
-          leading: Padding(
-            padding: EdgeInsets.only(left: 13),
-            child: leadingAppBar,
-          ),
           backgroundColor: backgroundColor,
           elevation: 0,
           actions: actionsAppBar
@@ -44,7 +38,7 @@ class CustomScaffold extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.fromLTRB(25, 10, 20, 10),
+              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: Text(
                 titleAppBar,
                 style: TextStyle(

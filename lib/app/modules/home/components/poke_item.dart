@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/app/shared/const.dart';
 
 class PokeItem extends StatelessWidget {
-  final int index;
   final String nome;
   final Color color;
   final String num;
   final List<String> types;
 
-  const PokeItem(
-      {Key key, this.index, this.nome, this.color, this.num, this.types})
+  const PokeItem({Key key, this.nome, this.color, this.num, this.types})
       : super(key: key);
 
   @override
@@ -66,7 +64,7 @@ class PokeItem extends StatelessWidget {
             placeholder: (_, __) => Align(
               alignment: Alignment.bottomRight,
               child: Padding(
-                padding: EdgeInsets.only(bottom: 15, right: 24),
+                padding: EdgeInsets.only(bottom: 8, right: 17),
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
                   backgroundColor: Colors.white,

@@ -7,6 +7,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  sliding_sheet: ^0.3.1
   cached_network_image: ^2.0.0
   flutter_staggered_animations: ^0.1.2
   dio: ^3.0.9

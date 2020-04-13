@@ -1,6 +1,6 @@
 # Pokedex
 
-This project is a starting point for a Flutter application.
+Este projeto é a criação de uma Pokedex com flutter, utilizando Modular e Mobx.
 
 A few resources to get you started if this is your first Flutter project:
 

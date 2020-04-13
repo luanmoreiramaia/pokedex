@@ -3,7 +3,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:pokedex/app/modules/home/components/poke_item.dart';
-import 'package:pokedex/app/modules/home/repositories/home_status.dart';
 import 'package:pokedex/app/shared/components/scaffold_home.dart';
 import 'package:pokedex/app/shared/const.dart';
 import 'home_controller.dart';
@@ -19,7 +18,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   @override
   void initState() {
     super.initState();
-    controller.fetchPokemons();
+    controller.getAllPokemons();
   }
 
   @override
@@ -49,64 +48,55 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             titleAppBar: "Pokedex",
             body: Observer(
               builder: (_) {
-                switch (controller.status) {
-                  case HomeStatus.loading:
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                    break;
-                  case HomeStatus.success:
-                    final list = controller.pokemons;
-                    Widget widget;
-
-                    if (list.isNotEmpty) {
-                      widget = AnimationLimiter(
-                        child: GridView.builder(
-                          physics: BouncingScrollPhysics(),
-                          padding: EdgeInsets.all(12),
-                          addAutomaticKeepAlives: true,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            childAspectRatio: (itemWidth / itemHeight),
-                            crossAxisCount: 2,
-                          ),
-                          itemCount: list.length,
-                          itemBuilder: (_, index) {
-                            final pokemon = list[index];
-
-                            return AnimationConfiguration.staggeredGrid(
-                              position: index,
-                              duration: Duration(milliseconds: 375),
-                              columnCount: 2,
-                              child: ScaleAnimation(
-                                child: GestureDetector(
-                                  child: PokeItem(
-                                    index: index,
-                                    nome: pokemon.name,
-                                    num: pokemon.num,
-                                    color: pokemon.typeToColor(pokemon.type[0]),
-                                    types: pokemon.type,
-                                  ),
-                                  onTap: () {},
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      );
-                    } else
-                      widget = textWarning("Nenhum pokemon encontrado!");
-
-                    return widget;
-                    break;
-                  case HomeStatus.error:
-                    return textWarning(
-                        "Ocorreu um problema ao buscar os pokemons: ${controller.status.value}");
-                    break;
-                  default:
-                    return Container();
-                    break;
+                if (controller.listPokemons.error != null) {
+                  return textWarning(
+                      "Ocorreu um problema ao buscar os pokemons: ${controller.listPokemons.error.message}");
+                } else if (controller.listPokemons.value == null) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
                 }
+
+                final list = controller.listPokemons.value;
+
+                if (list.isNotEmpty) {
+                  return AnimationLimiter(
+                    child: GridView.builder(
+                      physics: BouncingScrollPhysics(),
+                      padding: EdgeInsets.all(12),
+                      addAutomaticKeepAlives: true,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio: (itemWidth / itemHeight),
+                        crossAxisCount: 2,
+                      ),
+                      itemCount: list.length,
+                      itemBuilder: (_, index) {
+                        final pokemon = list[index];
+
+                        return AnimationConfiguration.staggeredGrid(
+                          position: index,
+                          duration: Duration(milliseconds: 375),
+                          columnCount: 2,
+                          child: ScaleAnimation(
+                            child: GestureDetector(
+                              child: PokeItem(
+                                nome: pokemon.name,
+                                num: pokemon.num,
+                                color: pokemon.typeToColor(pokemon.type[0]),
+                                types: pokemon.type,
+                              ),
+                              onTap: () {
+                                Modular.to.pushNamed("/pokemonDetail/$index",
+                                    arguments: list);
+                              },
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                } else
+                  return textWarning("Nenhum pokemon encontrado!");
               },
             ),
           ),
@@ -136,7 +126,17 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   textWarning(String text) => Padding(
         padding: const EdgeInsets.all(8.0),
         child: Center(
-          child: Text(text),
+          child: Column(
+            children: <Widget>[
+              Text(text),
+              RaisedButton(
+                child: Text("Tentar novamente?"),
+                onPressed: () {
+                  controller.getAllPokemons();
+                },
+              )
+            ],
+          ),
         ),
       );
 }

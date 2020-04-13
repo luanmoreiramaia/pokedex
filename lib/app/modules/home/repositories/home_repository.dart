@@ -1,18 +1,21 @@
 import 'dart:convert';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pokedex/app/models/pokemon.dart';
+import 'package:pokedex/app/modules/home/repositories/home_repository_interface.dart';
 import 'package:pokedex/app/shared/const.dart';
 
-class HomeRepository extends Disposable {
+class HomeRepository extends Disposable implements IHomeRepository {
   final Dio _client;
 
   HomeRepository(this._client);
 
-  Future<List<Pokemon>> fetchPokemons() async {
+  @override
+  void dispose() {}
+
+  @override
+  Future<List<Pokemon>> getAllPokemons() async {
     final Response<dynamic> response =
         await _client.get(Consts.BASE_URL_POKEAPI);
 
@@ -20,7 +23,4 @@ class HomeRepository extends Disposable {
         .map((e) => Pokemon.fromJson(e))
         .toList();
   }
-
-  @override
-  void dispose() {}
 }
