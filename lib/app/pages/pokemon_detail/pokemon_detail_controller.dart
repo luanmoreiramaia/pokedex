@@ -14,8 +14,24 @@ abstract class _PokemonDetailControllerBase with Store {
   @observable
   PageController pageController;
 
+  @observable
+  int posicaoAtual;
+
+  @observable
+  double progress = 0;
+
+  @observable
+  double multiple = 1;
+
+  @observable
+  double opacity = 1;
+
+  @observable
+  bool visibilityPageView = true;
+
   @action
   changePokemon({List<Pokemon> list, int index}) {
     pokemon = list[index];
+    posicaoAtual = index;
   }
 }

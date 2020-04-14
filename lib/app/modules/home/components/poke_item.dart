@@ -46,13 +46,16 @@ class PokeItem extends StatelessWidget {
   pokeballBackground() => Positioned(
         bottom: -(95 / 8),
         right: -(95 / 20),
-        child: Opacity(
-          child: Image.asset(
-            Consts.WHITE_POKEBALL,
-            height: 95,
-            width: 95,
+        child: Hero(
+          child: Opacity(
+            opacity: 0.15,
+            child: Image.asset(
+              Consts.WHITE_POKEBALL,
+              height: 95,
+              width: 95,
+            ),
           ),
-          opacity: 0.15,
+          tag: num,
         ),
       );
 
