@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/app/shared/const.dart';
@@ -18,6 +20,11 @@ class PokeItem extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: color,
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [color.withOpacity(0.7), color],
+          ),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Stack(

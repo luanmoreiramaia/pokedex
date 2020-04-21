@@ -1,13 +1,13 @@
 import 'package:mobx/mobx.dart';
 import 'package:pokedex/app/models/pokemon.dart';
-import 'package:pokedex/app/modules/home/repositories/home_repository.dart';
 
+import 'repositories/home_repository_interface.dart';
 part 'home_controller.g.dart';
 
 class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
-  final HomeRepository repository;
+  final IHomeRepository repository;
 
   _HomeControllerBase(this.repository);
 
