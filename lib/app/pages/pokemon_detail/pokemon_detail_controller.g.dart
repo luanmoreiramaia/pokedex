@@ -113,23 +113,38 @@ mixin _$PokemonDetailController on _PokemonDetailControllerBase, Store {
     }, _$opacityAtom, name: '${_$opacityAtom.name}_set');
   }
 
-  final _$visibilityPageViewAtom =
-      Atom(name: '_PokemonDetailControllerBase.visibilityPageView');
+  final _$specieAtom = Atom(name: '_PokemonDetailControllerBase.specie');
 
   @override
-  bool get visibilityPageView {
-    _$visibilityPageViewAtom.context
-        .enforceReadPolicy(_$visibilityPageViewAtom);
-    _$visibilityPageViewAtom.reportObserved();
-    return super.visibilityPageView;
+  ObservableFuture<Specie> get specie {
+    _$specieAtom.context.enforceReadPolicy(_$specieAtom);
+    _$specieAtom.reportObserved();
+    return super.specie;
   }
 
   @override
-  set visibilityPageView(bool value) {
-    _$visibilityPageViewAtom.context.conditionallyRunInAction(() {
-      super.visibilityPageView = value;
-      _$visibilityPageViewAtom.reportChanged();
-    }, _$visibilityPageViewAtom, name: '${_$visibilityPageViewAtom.name}_set');
+  set specie(ObservableFuture<Specie> value) {
+    _$specieAtom.context.conditionallyRunInAction(() {
+      super.specie = value;
+      _$specieAtom.reportChanged();
+    }, _$specieAtom, name: '${_$specieAtom.name}_set');
+  }
+
+  final _$pokemonV2Atom = Atom(name: '_PokemonDetailControllerBase.pokemonV2');
+
+  @override
+  ObservableFuture<PokemonV2> get pokemonV2 {
+    _$pokemonV2Atom.context.enforceReadPolicy(_$pokemonV2Atom);
+    _$pokemonV2Atom.reportObserved();
+    return super.pokemonV2;
+  }
+
+  @override
+  set pokemonV2(ObservableFuture<PokemonV2> value) {
+    _$pokemonV2Atom.context.conditionallyRunInAction(() {
+      super.pokemonV2 = value;
+      _$pokemonV2Atom.reportChanged();
+    }, _$pokemonV2Atom, name: '${_$pokemonV2Atom.name}_set');
   }
 
   final _$_PokemonDetailControllerBaseActionController =
@@ -147,9 +162,31 @@ mixin _$PokemonDetailController on _PokemonDetailControllerBase, Store {
   }
 
   @override
+  dynamic getInfoPokemon(String name) {
+    final _$actionInfo =
+        _$_PokemonDetailControllerBaseActionController.startAction();
+    try {
+      return super.getInfoPokemon(name);
+    } finally {
+      _$_PokemonDetailControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic getInfoSpecie(String num) {
+    final _$actionInfo =
+        _$_PokemonDetailControllerBaseActionController.startAction();
+    try {
+      return super.getInfoSpecie(num);
+    } finally {
+      _$_PokemonDetailControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     final string =
-        'pokemon: ${pokemon.toString()},pageController: ${pageController.toString()},posicaoAtual: ${posicaoAtual.toString()},progress: ${progress.toString()},multiple: ${multiple.toString()},opacity: ${opacity.toString()},visibilityPageView: ${visibilityPageView.toString()}';
+        'pokemon: ${pokemon.toString()},pageController: ${pageController.toString()},posicaoAtual: ${posicaoAtual.toString()},progress: ${progress.toString()},multiple: ${multiple.toString()},opacity: ${opacity.toString()},specie: ${specie.toString()},pokemonV2: ${pokemonV2.toString()}';
     return '{$string}';
   }
 }

@@ -125,18 +125,21 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
 
   textWarning(String text) => Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              Text(text),
-              RaisedButton(
-                child: Text("Tentar novamente?"),
-                onPressed: () {
-                  controller.getAllPokemons();
-                },
-              )
-            ],
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(text),
+            SizedBox(
+              height: 20,
+            ),
+            RaisedButton(
+              child: Text("Tentar novamente?"),
+              onPressed: () {
+                controller.getAllPokemons();
+              },
+            )
+          ],
         ),
       );
 }
