@@ -4,4 +4,4 @@ Este projeto é a criação de uma Pokedex com flutter, utilizando Modular e Mob
 
 ## v1.0.0
 
-Versão inicial.
+Versão inicial
