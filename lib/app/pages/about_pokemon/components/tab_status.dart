@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/app/models/pokemon.dart';
 import 'package:pokedex/app/models/pokemon_v2.dart';
 import 'package:pokedex/app/pages/about_pokemon/components/status_bar.dart';
 
@@ -9,7 +8,7 @@ class TabStatus extends StatelessWidget {
   const TabStatus({Key key, this.pokemonV2}) : super(key: key);
 
   List<int> getStatusPokemon() {
-    List<int> list = [0, 0, 0, 0, 0, 0];
+    List<int> list = [0, 0, 0, 0, 0, 0, 0];
     int sum = 0;
 
     pokemonV2.stats.forEach((item) {
@@ -48,203 +47,200 @@ class TabStatus extends StatelessWidget {
         horizontal: 30,
         vertical: 15,
       ),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: <Widget>[
-            Column(
+      child: Row(
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              textStatus(
+                color: Colors.black54,
+                fontSize: 16,
+                isBold: false,
+                text: "Velocidade",
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              textStatus(
+                color: Colors.black54,
+                fontSize: 16,
+                isBold: false,
+                text: "Sp. Defesa",
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              textStatus(
+                color: Colors.black54,
+                fontSize: 16,
+                isBold: false,
+                text: "Sp. Ataque",
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              textStatus(
+                color: Colors.black54,
+                fontSize: 16,
+                isBold: false,
+                text: "Defesa",
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              textStatus(
+                color: Colors.black54,
+                fontSize: 16,
+                isBold: false,
+                text: "Ataque",
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              textStatus(
+                color: Colors.black54,
+                fontSize: 16,
+                isBold: false,
+                text: "HP",
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              textStatus(
+                color: Colors.black54,
+                fontSize: 16,
+                isBold: false,
+                text: "Total",
+              ),
+            ],
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Builder(builder: (_) {
+            List<int> _list = getStatusPokemon();
+
+            return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 textStatus(
-                  color: Colors.black54,
+                  color: Colors.black,
                   fontSize: 16,
-                  isBold: false,
-                  text: "Velocidade",
+                  isBold: true,
+                  text: _list[0].toString(),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 textStatus(
-                  color: Colors.black54,
+                  color: Colors.black,
                   fontSize: 16,
-                  isBold: false,
-                  text: "Sp. Defesa",
+                  isBold: true,
+                  text: _list[1].toString(),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 textStatus(
-                  color: Colors.black54,
+                  color: Colors.black,
                   fontSize: 16,
-                  isBold: false,
-                  text: "Sp. Ataque",
+                  isBold: true,
+                  text: _list[2].toString(),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 textStatus(
-                  color: Colors.black54,
+                  color: Colors.black,
                   fontSize: 16,
-                  isBold: false,
-                  text: "Defesa",
+                  isBold: true,
+                  text: _list[3].toString(),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 textStatus(
-                  color: Colors.black54,
+                  color: Colors.black,
                   fontSize: 16,
-                  isBold: false,
-                  text: "Ataque",
+                  isBold: true,
+                  text: _list[4].toString(),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 textStatus(
-                  color: Colors.black54,
+                  color: Colors.black,
                   fontSize: 16,
-                  isBold: false,
-                  text: "HP",
+                  isBold: true,
+                  text: _list[5].toString(),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 textStatus(
-                  color: Colors.black54,
+                  color: Colors.black,
                   fontSize: 16,
-                  isBold: false,
-                  text: "Total",
+                  isBold: true,
+                  text: _list[6].toString(),
                 ),
               ],
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Builder(builder: (_) {
+            );
+          }),
+          SizedBox(
+            width: 10,
+          ),
+          Builder(
+            builder: (_) {
               List<int> _list = getStatusPokemon();
 
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  textStatus(
-                    color: Colors.black,
-                    fontSize: 16,
-                    isBold: true,
-                    text: _list[0].toString(),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  textStatus(
-                    color: Colors.black,
-                    fontSize: 16,
-                    isBold: true,
-                    text: _list[1].toString(),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  textStatus(
-                    color: Colors.black,
-                    fontSize: 16,
-                    isBold: true,
-                    text: _list[2].toString(),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  textStatus(
-                    color: Colors.black,
-                    fontSize: 16,
-                    isBold: true,
-                    text: _list[3].toString(),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  textStatus(
-                    color: Colors.black,
-                    fontSize: 16,
-                    isBold: true,
-                    text: _list[4].toString(),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  textStatus(
-                    color: Colors.black,
-                    fontSize: 16,
-                    isBold: true,
-                    text: _list[5].toString(),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  textStatus(
-                    color: Colors.black,
-                    fontSize: 16,
-                    isBold: true,
-                    text: _list[6].toString(),
-                  ),
-                ],
+              return Expanded(
+                child: Column(
+                  children: <Widget>[
+                    StatusBar(
+                      widthFactor: _list[0] / 160,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    StatusBar(
+                      widthFactor: _list[1] / 160,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    StatusBar(
+                      widthFactor: _list[2] / 160,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    StatusBar(
+                      widthFactor: _list[3] / 160,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    StatusBar(
+                      widthFactor: _list[4] / 160,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    StatusBar(
+                      widthFactor: _list[5] / 160,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    StatusBar(
+                      widthFactor: _list[6] / 960,
+                    ),
+                  ],
+                ),
               );
-            }),
-            SizedBox(
-              width: 10,
-            ),
-            Expanded(
-              child: Builder(
-                builder: (_) {
-                  List<int> _list = getStatusPokemon();
-
-                  return Column(
-                    children: <Widget>[
-                      StatusBar(
-                        widthFactor: _list[0] / 160,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      StatusBar(
-                        widthFactor: _list[1] / 160,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      StatusBar(
-                        widthFactor: _list[2] / 160,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      StatusBar(
-                        widthFactor: _list[3] / 160,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      StatusBar(
-                        widthFactor: _list[4] / 160,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      StatusBar(
-                        widthFactor: _list[5] / 160,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      StatusBar(
-                        widthFactor: _list[6] / 960,
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
+            },
+          ),
+        ],
       ),
     );
   }
